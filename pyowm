@@ -1,0 +1,16 @@
+import pyowm
+#from pyowm import OWM
+#owm_en = OWM()
+#owm_ru = OWM(language='ru')
+
+city = input('В каком городе Вас интересует погода: ')
+
+owm = pyowm.OWM('6d00d1d4e704068d70191bad2673e0cc')  # You MUST provide a valid API key
+
+observation = owm.weather_at_place(city)
+w = observation.get_weather()
+temperature = w.get_temperature('celsius')['temp']
+wind = w.get_wind()['speed']
+
+
+print('В городе ' + city + ' сейчас ' + w.get_detailed_status() + ', температура воздуха ' + str(temperature) + ' С' + ', скорость ветра ' + str(wind) + ' метра в секунду.')
